@@ -1,0 +1,6 @@
+event manager applet Post-BootCheck
+  description "Runs igmp-snoopcheck.py after boot.  Workaround for CSCvc90289"
+  event syslog pattern "vdc 1 has come online"
+  action 1 syslog priority critical msg "Running igmp-snoop-check.py"
+  action 2 cli command "source igmp-snoopcheck.py"
+  action 3 syslog priority critical msg "$igmpCheckMsg"
